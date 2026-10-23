@@ -1,12 +1,17 @@
 # this file contains everything about the area of the playing game
 import pygame
 
-def drawWalls(screen: pygame.Surface, x: int, y: int) -> None:  
-    wallColor = pygame.color.Color("#C14A09")
-    pygame.draw.line(screen, wallColor, (24,20), (24,y-20), 10)
-    pygame.draw.line(screen, wallColor, (20,20), (x-20,20), 10)
-    pygame.draw.line(screen, wallColor, (20,y-20), (x-20,y-20), 10)
-    pygame.draw.line(screen, wallColor, (x-25,20), (x-25,y-20), 10)
+def draw_arena(screen: pygame.Surface, play_rect: pygame.Rect) -> None:
+    # Fill play area with green
+    pygame.draw.rect(screen, "#1B3B1B", play_rect)
 
-def drawGrid(screen: pygame.Surface, x: int, y: int) -> None:  
-    pygame.draw.flood_fill(screen, "dark green", (x/2,y/2))
+    # Draw border walls
+    wall_color = pygame.Color("#C14A09")
+    pygame.draw.rect(screen, wall_color, play_rect, width=8)
+
+def draw_grid_lines(screen: pygame.Surface, play_rect: pygame.Rect, cell_size: int = 20) -> None:
+    line_color = (20, 50, 20)
+    for x in range(play_rect.left, play_rect.right, cell_size):
+        pygame.draw.line(screen, line_color, (x, play_rect.top), (x, play_rect.bottom))
+    for y in range(play_rect.top, play_rect.bottom, cell_size):
+        pygame.draw.line(screen, line_color, (play_rect.left, y), (play_rect.right, y))
