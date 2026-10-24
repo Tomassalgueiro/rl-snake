@@ -17,6 +17,7 @@ Point = namedtuple('Point', 'x, y')
 
 SCREEN_WIDTH, SCREEN_HEIGHT = 1280, 720
 GRID_SIZE = 20
+# 1200 640
 ARENA_RECT = pygame.Rect(40, 40, 1200, 640)
 SPEED = 60  # Altera a velocidade visual (ex: 60 ou 120 para treinar mais rápido)
 
